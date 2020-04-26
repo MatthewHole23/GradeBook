@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\GradeBook.Tests.csproj": {}
+    "c:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\GradeBook.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj": {
+    "c:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj",
+        "projectUniqueName": "c:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj",
         "projectName": "GradeBook",
-        "projectPath": "C:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj",
+        "projectPath": "c:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj",
         "packagesPath": "C:\\Users\\Matthew\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matthew\\gradebook\\src\\GradeBook\\obj\\",
+        "outputPath": "c:\\Users\\Matthew\\gradebook\\src\\GradeBook\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Matthew\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -56,14 +56,14 @@
         }
       }
     },
-    "C:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\GradeBook.Tests.csproj": {
+    "c:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\GradeBook.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\GradeBook.Tests.csproj",
+        "projectUniqueName": "c:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\GradeBook.Tests.csproj",
         "projectName": "GradeBook.Tests",
-        "projectPath": "C:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\GradeBook.Tests.csproj",
+        "projectPath": "c:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\GradeBook.Tests.csproj",
         "packagesPath": "C:\\Users\\Matthew\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\obj\\",
+        "outputPath": "c:\\Users\\Matthew\\gradebook\\test\\GradeBook.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Matthew\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -79,8 +79,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj": {
-                "projectPath": "C:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj"
+              "c:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj": {
+                "projectPath": "c:\\Users\\Matthew\\gradebook\\src\\GradeBook\\GradeBook.csproj"
               }
             }
           }
