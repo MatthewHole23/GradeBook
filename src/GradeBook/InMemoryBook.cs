@@ -11,7 +11,7 @@ namespace GradeBook
         public List<double> grades;
              
         
-        public InMemoryBook(string name) : base(name) 
+        public InMemoryBook() : base() 
         {
             Name = name;
             grades = new List<double>(); 
@@ -69,9 +69,7 @@ namespace GradeBook
             {
                 result.Add(grades[i]);                               
             }
-     
             return result;    
-         
         }
        
     }

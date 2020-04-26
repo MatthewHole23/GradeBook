@@ -1,3 +1,5 @@
+// Unit Test used as a learning resource to understand C# fundamentals
+
 using System;
 using Xunit;
 
@@ -29,7 +31,7 @@ namespace GradeBook.Tests
         }
 
 
-        private string ReturnMessage(string message)    // sam type and no. of arguments as the delegate
+        private string ReturnMessage(string message)    // same type and no. of arguments as the delegate
         {
             count++;
             return message;
@@ -99,7 +101,7 @@ namespace GradeBook.Tests
 
         private void GetBookSetName(InMemoryBook book, string name)
         {
-            book = new InMemoryBook("Matthew");
+            book = new InMemoryBook();
             book.Name = name;
 
         }
@@ -150,7 +152,7 @@ namespace GradeBook.Tests
         
         InMemoryBook GetBook(string name)
         {
-            var book = new InMemoryBook("Matthew");
+            var book = new InMemoryBook();
             book.Name = name;
             return book;
         }

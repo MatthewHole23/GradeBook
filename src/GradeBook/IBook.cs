@@ -4,7 +4,7 @@ namespace GradeBook
         {
             void AddGrade(double grade);
             Statistics GetStatistics();
-            string Name {get;}
+            string Name {get; set;}
             event GradeAddedDelegate GradeAdded;
         }    
 }

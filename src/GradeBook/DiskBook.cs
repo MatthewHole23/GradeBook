@@ -7,7 +7,7 @@ namespace GradeBook
 {
     public class DiskBook : Book, IBook
     {
-        public DiskBook(string name) : base(name)
+        public DiskBook() : base()
         {
             Name = name;
         }
@@ -37,21 +37,27 @@ namespace GradeBook
         public override Statistics GetStatistics()
         {
             var result = new Statistics();
-
-            using(var reader = File.OpenText($"{Name}.txt"))
+            try
             {
-                var line = reader.ReadLine();
-                while(line != null)
+                using(var reader = File.OpenText($"{Name}.txt"))
                 {
-                    var number = double.Parse(line);
-                    result.Add(number);
-                    line = reader.ReadLine();
-                }                                                 
-                                
+                    var line = reader.ReadLine();
+                    while(line != null)
+                    {
+                        var number = double.Parse(line);
+                        result.Add(number);
+                        line = reader.ReadLine();
+                    }
+                    return result;                                                 
+                }
+            }catch(System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("No file is present.");
             }
-             
-            return result;  
-         
+
+            return result;
+            
         }
+
     }
 }

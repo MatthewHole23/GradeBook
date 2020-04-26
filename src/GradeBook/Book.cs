@@ -6,7 +6,7 @@ namespace GradeBook
 {
     public abstract class Book : NamedObject, IBook
     {
-        public Book(string name) : base(name)
+        public Book() : base()
         {
         }
 

@@ -10,7 +10,7 @@ namespace GradeBook.Tests
         public void BookCalsAvgGrade()
         {
             // arrange
-            var book = new InMemoryBook("Matthew");
+            var book = new InMemoryBook();
             book.Name = "Matthew";
             book.AddGrade(89.1);
             book.AddGrade(70.28);
@@ -30,7 +30,7 @@ namespace GradeBook.Tests
         [Fact]
         public void ValidGradeEntry()
         {
-            var book = new InMemoryBook("Matthew");
+            var book = new InMemoryBook();
             book.Name = "Matt";
             // adding an illegal value to the grades list for object 'book'
 

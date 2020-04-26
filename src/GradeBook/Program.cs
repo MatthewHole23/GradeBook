@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace GradeBook
@@ -7,35 +8,13 @@ namespace GradeBook
     {
         static void Main() 
         {
+            // creating a new DiskBook object of type 'Book'
+            Book book = new DiskBook();
+            SetName(book);  // setting the name of the book
+            book.GradeAdded += OnGradeAdded; // called when a new grade is added                     
+            UserIntGrade(book); // adding grades to the InMemory and DiskBook
 
-            IBook book = new DiskBook("Matthew");
-            System.Console.WriteLine(book.Name); // just as reference that a 'name' was added when a book was instantiated
-            book.GradeAdded += OnGradeAdded; // called when a new grade is added
-
-            /*
-            while(true)
-            {
-                if (book.Name == null)
-                {
-                    try
-                    {
-                        Console.WriteLine("Please enter the name of the student:\n");
-                        book.Name = Console.ReadLine();
-                    }
-                    catch (FormatException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"{book.Name}'s gradebook has been created!");
-                    break;
-                }
-            } 
-            */
-
-            UserIntGrade(book);
+            
 
             var stats = book.GetStatistics();
             Console.WriteLine($"These are the statistics for {book.Name}'s Gradebook.");
@@ -50,7 +29,9 @@ namespace GradeBook
             Console.WriteLine($"Success");
         }
 
-        // polymorphic class creating where UserIntGrade accepts an object of type 'Book' that utilises a method named 'AddGrade'
+   
+
+        // polymorphic class created where UserIntGrade accepts an object of type 'Book' that utilises method 'AddGrade'
         private static void UserIntGrade(IBook book)
         {
             while(true)
@@ -110,6 +91,77 @@ namespace GradeBook
                     Console.WriteLine($"Please enter a valid option. '{add_grade}' is an invalid entry.");
                 }
             }    
+        }
+
+        private static void SetName(Book book)
+        {
+            do
+            {              
+                try
+                {
+                    Console.WriteLine("Please enter the name of the student:\n");
+                    var new_name = Console.ReadLine();
+                    if (!String.IsNullOrEmpty(new_name))
+                    {
+                        try
+                        {
+                            string path = $"{Directory.GetCurrentDirectory()}\\{new_name}.txt";
+                            if(!File.Exists(path))
+                            {
+                                book.Name = new_name;
+                                Console.WriteLine("Name is OK!");
+                                break;  
+                            }else
+                            {
+                                Console.WriteLine($"A gradebook for {new_name} already exists.\nDo you with to Overwrite the file (o), add to the file (a), or create a book with a unique name (c)?");
+                                var option = Char.Parse(Console.ReadLine());
+                                FileOptions(option, book, new_name);
+                            } 
+                        }
+                        catch(ArgumentException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        
+                        
+                    }
+                    else
+                    {
+                        throw new FormatException("A gradebook's name cannot be empty");
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
+            }while(book.Name == null);
+
+            Console.WriteLine($"{book.Name}'s gradebook has been created!");
+        } 
+
+        private static void FileOptions(char choice, Book book, string new_name)
+        {
+            switch(choice)
+            {
+                case 'o':
+                    File.Delete($"{new_name}.txt");
+                    book.Name = new_name;
+                    Console.WriteLine($"The existing entry for {book.Name} will be overwritten.");
+                    break;
+                
+                case 'a':
+                    book.Name = new_name;
+                    Console.WriteLine($"The existing entry for {book.Name} will be added to.");
+                    break;
+                
+                case 'c':
+                    break;
+
+                default:
+                    throw new ArgumentException($"{choice} was not a valid option.");
+
+            }
         }
     } 
 
