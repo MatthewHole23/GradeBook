@@ -12,9 +12,9 @@ namespace GradeBook.Tests
             // arrange
             var book = new InMemoryBook();
             book.Name = "Matthew";
-            book.AddGrade(89.1);
-            book.AddGrade(70.28);
-            book.AddGrade(59.72);
+            book.AddGrade(89.1, "Grade 1");
+            book.AddGrade(70.28, "Grade 2");
+            book.AddGrade(59.72, "Grade 3");
             var expected = 73.03;
             // act
             var stats = book.GetStatistics();
@@ -36,7 +36,7 @@ namespace GradeBook.Tests
 
             // Checking that an 'ArgumentException' is thrown when an illegal grade is inputted
 
-            Assert.Throws<ArgumentException>(() => book.AddGrade(105)); 
+            Assert.Throws<ArgumentException>(() => book.AddGrade(105, "Grade n")); 
 
         }
 

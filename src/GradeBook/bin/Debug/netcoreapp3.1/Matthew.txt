@@ -1,4 +1,4 @@
-100
-101
-89
-97
+Maths: 89%
+English: 100%
+Geography: 89%
+Physics: 65%

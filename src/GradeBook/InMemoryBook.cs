@@ -17,23 +17,23 @@ namespace GradeBook
             grades = new List<double>(); 
         }
 
-        public void AddGrade(char letter)
+        public void AddGrade(char letter, string subject_name)
         {
             switch (letter)
             {
                 case 'A':
-                    AddGrade(90);
+                    AddGrade(90, subject_name);
                     break;
 
                 case 'B':
-                    AddGrade(80);
+                    AddGrade(80, subject_name);
                     break;
 
                 case 'C':
-                    AddGrade(70);
+                    AddGrade(70, subject_name);
                     break;
                 case 'D':
-                    AddGrade(60);
+                    AddGrade(60, subject_name);
                     break;
 
                 default:
@@ -41,7 +41,7 @@ namespace GradeBook
             }
         }
        
-        public override void AddGrade(double grade)
+        public override void AddGrade(double grade, string subject_name)
         {
           
             if ((grade >= 0) && (grade <= 100))

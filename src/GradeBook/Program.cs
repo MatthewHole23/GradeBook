@@ -32,50 +32,57 @@ namespace GradeBook
    
 
         // polymorphic class created where UserIntGrade accepts an object of type 'Book' that utilises method 'AddGrade'
-        private static void UserIntGrade(IBook book)
+        private static void UserIntGrade(Book book)
         {
             while(true)
             {
-                Console.WriteLine("Would you like to add a grade?\nYes(y)   No(n)");
+                Console.WriteLine("Would you like to add a grade for a subject?\nYes(y)   No(n)");
                 var add_grade = Console.ReadLine();
                 if(add_grade == "y")
                 {
                     while (true)
                     {
                         try
-                        {
-                            Console.WriteLine("Please type in a valid grade or Quit(q):");
-                            var ui_grade = Console.ReadLine();
-                            
-                            if(ui_grade == "q")
+                        {  
+                            Console.WriteLine("Name of subject to add a grade for:");
+                            var subject_name = Console.ReadLine();
+                            SubjectName(book, subject_name);
+                            try
                             {
-                                break;
-                            }
-                            else
-                            {   
+                                Console.WriteLine($"Please type in a valid grade for {subject_name}:");
+                                var ui_grade = Console.ReadLine();
+
                                 if(Double.TryParse(ui_grade, out double value))
                                 {
-                                    book.AddGrade(value);
+                                    book.AddGrade(value, subject_name);
+                                    break;
                                 }
                                 else if(Char.TryParse(ui_grade, out char letter_val))
                                 {
-                                    book.AddGrade(letter_val);
+                                    book.AddGrade(letter_val, subject_name);
+                                    break;
                                 }
-                            }                            
+                                                         
+                            }
+                            catch(ArgumentException ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                            catch(FormatException ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            
+                            }
+                            finally
+                            {
+                                Console.WriteLine("...");
+                            }
                         }
                         catch(ArgumentException ex)
                         {
                             Console.WriteLine(ex.Message);
                         }
-                        catch(FormatException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                           
-                        }
-                        finally
-                        {
-                            Console.WriteLine("...");
-                        }
+                        
                         
                     }
                                        
@@ -110,6 +117,7 @@ namespace GradeBook
                             {
                                 book.Name = new_name;
                                 Console.WriteLine("Name is OK!");
+                                using (File.CreateText(path))
                                 break;  
                             }else
                             {
@@ -136,8 +144,6 @@ namespace GradeBook
                 }
                 
             }while(book.Name == null);
-
-            Console.WriteLine($"{book.Name}'s gradebook has been created!");
         } 
 
         private static void FileOptions(char choice, Book book, string new_name)
@@ -145,8 +151,8 @@ namespace GradeBook
             switch(choice)
             {
                 case 'o':
-                    File.Delete($"{new_name}.txt");
                     book.Name = new_name;
+                    using (File.CreateText($"{new_name}.txt"))
                     Console.WriteLine($"The existing entry for {book.Name} will be overwritten.");
                     break;
                 
@@ -162,6 +168,31 @@ namespace GradeBook
                     throw new ArgumentException($"{choice} was not a valid option.");
 
             }
+        }
+
+        private static void SubjectName(Book book, string subject_name)
+        {
+            if(subject_name != null)
+            {
+                using(var reader = File.OpenText($"{book.Name}.txt"))
+                {   
+                    var line = reader.ReadLine();
+                    while(line != null)
+                    {   
+                        var subjfromfile = line.Split(':')[0];
+                        if(subjfromfile.ToLower() == subject_name.ToLower())
+                        {
+                            throw new ArgumentException("There is already a grade stored for this subject.");
+                        }
+                        line = reader.ReadLine();
+                    }
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Grade names cannot be empty.");
+            }
+            
         }
     } 
 

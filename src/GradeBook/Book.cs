@@ -12,7 +12,7 @@ namespace GradeBook
 
         public abstract event GradeAddedDelegate GradeAdded;
 
-        public abstract void AddGrade(double grade);
+        public abstract void AddGrade(double grade, string subject_name);
 
         public abstract Statistics GetStatistics();
         

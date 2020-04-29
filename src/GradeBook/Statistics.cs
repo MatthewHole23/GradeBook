@@ -4,7 +4,7 @@ namespace GradeBook
 {
 	public class Statistics
 	{
-		//Defining the fields and properties of Statistics
+		// Defining the fields and properties of Statistics
 		// read only property
 		public double Average
 		{
